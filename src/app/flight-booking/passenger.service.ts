@@ -12,12 +12,15 @@ export class PassengerService {
   passengers: Passenger[] = [];
 
   addBonusMiles() {
-    // Demo-Method that adds some bonus miles to
-    // the first loaded passenger
-    // Used to demonstrate OnPush
-
     if (this.passengers.length == 0) return;
-    this.passengers[0].bonusMiles += 1000;
+    
+    let oldPassengers = this.passengers;
+    let oldPassenger = oldPassengers[0];
+
+    let newPassenger:Passenger = { ...oldPassenger, bonusMiles: oldPassenger.bonusMiles + 1000 };
+    let newPassengers = [newPassenger, ...oldPassengers.slice(1)];
+
+    this.passengers = newPassengers;
   }
 
   find(name: string): void {

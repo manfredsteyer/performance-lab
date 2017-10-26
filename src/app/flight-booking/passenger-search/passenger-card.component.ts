@@ -1,9 +1,12 @@
 import {Passenger} from '../../entities/passenger';
-import { Component, OnInit, Input, EventEmitter, Output, ElementRef, NgZone } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, NgZone, OnInit, Output } from '@angular/core';
+
+import {ChangeDetectionStrategy} from '@angular/core';
 
 @Component({
     selector: 'passenger-card',
-    templateUrl: 'passenger-card.component.html'
+    templateUrl: 'passenger-card.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PassengerCardComponent {
     @Input() item: Passenger;
