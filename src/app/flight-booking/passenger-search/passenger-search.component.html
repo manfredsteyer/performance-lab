@@ -1,0 +1,63 @@
+<div class="card">
+    <h1>Passenger Search</h1>
+    <form #f="ngForm" publicPeople>
+
+        <div *ngIf="f?.hasError('publicPeople')">PublicPeople</div>
+
+        <div class="form-group">
+            <label>Name</label>
+            <input [(ngModel)]="name" class="form-control" required name="name" valName="strict" asyncName minlength="3">
+
+            <div *ngIf="f?.controls['name']?.dirty && !f?.controls['name']?.valid && !f?.controls['name']?.pending">Fehler</div>
+            <div *ngIf="f?.controls['name']?.dirty && f?.controls['name']?.hasError('required')">Pflichtfeld</div>
+            <div *ngIf="f?.controls['name']?.hasError('minlength')">Min. 3 Zeichen</div>
+            <div *ngIf="f?.controls['name']?.hasError('valName')">Nur Buchstaben erlaubt</div>
+            <div *ngIf="f?.controls['name']?.hasError('asyncName')">Dieser Name ist nicht erfasst</div>
+            <div *ngIf="f?.controls['name']?.pending">Validiere im Hintergrund</div>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-default" (click)="search()">
+        Search
+    </button>
+
+            <button class="btn btn-default" (click)="addBonusMiles()" *ngIf="passengers.length > 0">
+      Add Miles
+    </button>
+        </div>
+    </form>
+
+    <div class="row">
+        <div *ngFor="let p of passengers" style="margin-bottom:20px" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <passenger-card [item]="p" [(selected)]="basket[p.id]">
+
+                <a class="btn btn-default" [routerLink]="['../passenger-edit', p.id]">Edit</a>
+
+            </passenger-card>
+        </div>
+    </div>
+
+    <!--
+    [ngClass]="{ 'active': f == selectedFlight }"
+-->
+    <!--
+<table class="table table-striped">
+    <tr *ngFor="let p of passengers" [ngStyle]="{ 'background-color': (p == selectedPassenger) ? 'orange' : '' }">
+        <td>{{p.id}}</td>
+        <td>{{p.firstName}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.passengerStatus | status:'short'}}</td>
+        <td>{{p.bonusMiles}}</td>
+        <td>
+            <a (click)="select(p)">Auswählen</a>
+        </td>
+    </tr>
+</table>
+-->
+
+    <pre>Warenkorb
+-----------------
+{{ basket | json }}
+</pre>
+
+</div>
