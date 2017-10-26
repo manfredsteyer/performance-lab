@@ -13,7 +13,7 @@ import { AppRouterModule } from './app.routes';
     BrowserModule,
     FormsModule,
     HttpModule,
-    FlightBookingModule,
+    // FlightBookingModule, // Removed b/c this would prevent lazy loading
     AppRouterModule
   ],
   declarations: [

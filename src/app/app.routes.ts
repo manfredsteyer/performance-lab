@@ -16,6 +16,10 @@ const APP_ROUTES: Routes = [
     loadChildren: './hotels/hotels.module#HotelsModule'
   },
   {
+    path: 'flight-booking',
+    loadChildren: './flight-booking/flight-booking.module#FlightBookingModule'
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }

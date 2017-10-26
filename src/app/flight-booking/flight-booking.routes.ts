@@ -6,9 +6,14 @@ import { PassengerEditComponent } from './passenger-edit/passenger-edit.componen
 
 const FLIGHT_BOOKING_ROUTES: Routes = [
   {
-    path: 'flight-booking',
+    path: '',
     component: FlightBookingComponent,
     children: [
+      {
+        path: '',
+        redirectTo: 'passenger-search',
+        pathMatch: 'full'
+      },
       {
         path: 'passenger-search',
         component: PassengerSearchComponent
