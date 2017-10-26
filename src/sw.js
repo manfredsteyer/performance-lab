@@ -1,3 +1,5 @@
+// SW is disabled
+/*
 importScripts('./assets/workbox-sw.dev.v2.0.2-rc1-2.0.2-rc1.0.js');
                         
 const workboxSW = new WorkboxSW();
@@ -10,5 +12,5 @@ workboxSW.router.registerRoute(/./, cacheFirst);
 
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', () => self.clients.claim());
-
+*/
 
