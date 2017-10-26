@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Rx';
 import { Component } from "@angular/core";
 import { Passenger } from "../../entities/passenger";
 import { PassengerService } from "../passenger.service";
@@ -22,6 +23,10 @@ export class PassengerSearchComponent {
 
     get passengers(): Passenger[] {
       return this.passengerService.passengers;
+    }
+
+    get passengers$(): Observable<Passenger[]> {
+        return this.passengerService.passengers$;
     }
 
     search(): void {

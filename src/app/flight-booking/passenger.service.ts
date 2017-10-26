@@ -1,6 +1,8 @@
+
 import {Http, Headers, URLSearchParams} from '@angular/http';
 import {Passenger} from '../entities/passenger';
 import { Injectable } from "@angular/core";
+import { Subject } from 'rxjs/Subject';
 import { Observable } from "rxjs/Observable";
 
 @Injectable()
@@ -10,6 +12,10 @@ export class PassengerService {
   }
 
   passengers: Passenger[] = [];
+
+  private passengersSubject = new Subject<Passenger[]>();
+  passengers$: Observable<Passenger[]> = this.passengersSubject.asObservable();
+
 
   addBonusMiles() {
     if (this.passengers.length == 0) return;
@@ -21,6 +27,8 @@ export class PassengerService {
     let newPassengers = [newPassenger, ...oldPassengers.slice(1)];
 
     this.passengers = newPassengers;
+
+    this.passengersSubject.next(newPassengers);
   }
 
   find(name: string): void {
@@ -37,7 +45,10 @@ export class PassengerService {
           .get(url, { headers, search})
           .map(resp => resp.json())
           .subscribe(
-            p => {this.passengers = p},
+            p => {
+              this.passengers = p;
+              this.passengersSubject.next(p)
+            },
             err => {console.error('Error loading passangers', err);}
           )
   }
