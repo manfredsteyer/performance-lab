@@ -1,11 +1,3 @@
-# Starterkit
+# Solution for Performance Workshop at ReactiveConf in Bratislava, October 2017
 
-## Projekt starten
-
-```
-npm start
-```
-
-## Port ändern
-
-- Siehe  ``package.json``
+- Please find one commit for each exercise.
